@@ -1,0 +1,64 @@
+<%= render 'shared_content/title', title: @expansion.name %>
+
+
+<h3><%= link_to "Heros", heros_path %></h3>
+
+<div class='row'>
+  <div class='well col-md-6'>
+    <ul>
+  	 <% @expansion.heros.each do |hero| %>
+        <li><%= link_to hero.name, hero_path(hero) %></li>
+  	 <% end %>
+    </ul>
+  </div>
+</div>
+
+
+
+<h3><%= link_to "Masterminds", masterminds_path %></h3>
+
+<div class='row'>
+  <div class='well col-md-6'>
+    <ul>
+     <% @expansion.masterminds.each do |mastermind| %>
+        <li><%= link_to mastermind.name, mastermind_path(mastermind) %></li>
+     <% end %>
+    </ul>
+  </div>
+</div>
+
+<h3><%= link_to "Scenarios", scenarios_path %></h3>
+
+<div class='row'>
+  <div class='well col-md-6'>
+    <ul>
+     <% @expansion.scenarios.each do |scenario| %>
+        <li><%= link_to scenario.name, scenario_path(scenario) %></li>
+     <% end %>
+    </ul>
+  </div>
+</div>
+
+<h3><%= link_to "Villains", villains_path %></h3>
+
+<div class='row'>
+  <div class='well col-md-6'>
+    <ul>
+     <% @expansion.villains.each do |villain| %>
+        <li><%= link_to villain.name, villain_path(villain) %></li>
+     <% end %>
+    </ul>
+  </div>
+</div>
+
+<h3><%= link_to "Henchmen", henchmen_path %></h3>
+
+<div class='row'>
+  <div class='well col-md-6'>
+    <ul>
+     <% @expansion.henchmen.each do |henchman| %>
+        <li><%= link_to henchman.name, henchman_path(henchman) %></li>
+     <% end %>
+    </ul>
+  </div>
+</div>

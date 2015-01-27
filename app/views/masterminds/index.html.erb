@@ -1,0 +1,16 @@
+<%= render 'shared_content/title', title: "All Masterminds" %>
+
+<% Expansion.all.each do |expansion| %>
+  <h3><%= link_to expansion.name, expansion_path(expansion) %></h3>
+
+  <div class='row'>
+    <div class='well col-md-6'>
+      <ul>
+    	 <% expansion.masterminds.each do |mastermind| %>
+          <li><%= link_to mastermind.name, mastermind_path(mastermind) %></li>
+    	 <% end %>
+      </ul>
+    </div>
+  </div>
+
+<% end %>

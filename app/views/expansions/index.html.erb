@@ -1,0 +1,7 @@
+<%= render 'shared_content/title', title: "Legendary Sets/Expansions" %>
+
+<% @expansions.each do |expansion| %>
+  <div class="well col-md-8">
+    <%= link_to expansion.name, expansion_path(expansion) %>
+  </div>
+<% end %>

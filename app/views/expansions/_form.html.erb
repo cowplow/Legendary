@@ -1,0 +1,12 @@
+<%= render 'shared_content/error_messages', obj: @expansion %>
+
+<p>
+  <%= form_for @expansion do |f| %>
+    <%= f.label :name %>
+		<%= f.text_field :name %>
+		<br/>
+		<br/>
+
+    <%= f.submit(@expansion.new_record? ? 'Create Expansion' : 'Update Expansion', class: "btn btn-info") %>
+  <% end %>
+</p>

@@ -1,0 +1,33 @@
+<%= render 'shared_content/error_messages', obj: @mastermind %>
+
+<p>
+	<%= form_for @mastermind do |f| %>
+		<%= f.label :expansion %>
+		<%= f.collection_select(:expansion_id, Expansion.all, :id, :name) %>
+		<br/>
+		<br/>
+
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<br/>
+		<br/>
+
+		<%= f.label :power %>
+		<%= f.text_field :power %>
+
+		<br/>
+		<br/>
+
+
+		<%= f.label :description %>
+		<%= f.text_area :description %>
+
+		<br/>
+		<br/>
+
+		<%= f.submit(@mastermind.new_record? ? 'Create Mastermind' : 'Update Mastermind', class: "btn btn-info") %>
+
+
+	<% end %>
+</p>

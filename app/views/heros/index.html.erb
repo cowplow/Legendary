@@ -1,0 +1,16 @@
+<%= render 'shared_content/title', title: "All Heros" %>
+
+<% Expansion.all.each do |expansion| %>
+  <h3><%= link_to expansion.name, expansion_path(expansion) %></h3>
+
+  <div class='row'>
+    <div class='well col-md-6'>
+      <ul>
+    	 <% expansion.heros.each do |hero| %>
+          <li><%= link_to hero.name, hero_path(hero) %></li>
+    	 <% end %>
+      </ul>
+    </div>
+  </div>
+
+<% end %>

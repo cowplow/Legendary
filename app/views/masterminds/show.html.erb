@@ -1,0 +1,5 @@
+<%= render 'shared_content/title', title: @mastermind.name %>
+
+<h4>Set: <%= link_to @mastermind.expansion.name, expansion_path(@mastermind.expansion) %></h4>
+
+<h4>Description: <%= @mastermind.description %></h4>

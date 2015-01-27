@@ -8,4 +8,6 @@ class Expansion < ActiveRecord::Base
   has_many :heros
 
   slugable_column :name
+
+  validates :name, presence: true, uniqueness: true
 end
