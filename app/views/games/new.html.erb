@@ -1,1 +1,22 @@
-<h4>It's me mario</h4>
+<%= render 'shared_content/title', title: "Generate a New Game!" %>
+
+<%= render 'shared_content/error_messages', obj: @game %>
+
+<%= form_for @game do |f| %>
+  <h4>Please select the sets you own/wish to play with:</h4>
+
+  <%= f.collection_check_boxes :expansion_ids, Expansion.all, :id, :name do |cb| %>
+      <% cb.label(class: "checkbox-inline") {cb.check_box(class: "checkbox") + cb.text} %>
+  <% end %>
+  <br/>
+  <br/>
+
+  <%= label_tag :players %>
+  <%= select_tag(:players, options_for_select(Game::PLAYERS)) %>
+
+  <br/>
+  <br/>
+
+  <%= f.submit("Randomize a New Game", class: "btn btn-info") %>
+
+<% end %>

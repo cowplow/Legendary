@@ -6,6 +6,8 @@ class Expansion < ActiveRecord::Base
   has_many :villains
   has_many :henchmen
   has_many :heros
+  has_many :game_expansions
+  has_many :games, through: :game_expansions
 
   slugable_column :name
 

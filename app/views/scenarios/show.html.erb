@@ -1,0 +1,5 @@
+<%= render 'shared_content/title', title: @scenario.name %>
+
+<h4>Set: <%= link_to @scenario.expansion.name, expansion_path(@scenario.expansion) %></h4>
+
+<h4>Description: <%= @scenario.description %></h4>

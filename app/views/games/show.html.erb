@@ -1,0 +1,40 @@
+<%= render 'shared_content/title', title: "Random Game" %>
+
+<h2>Mastermind: <%= @game.mastermind.name %></h2>
+
+<h2>Scheme: <%= @game.scenario.name %></h2>
+
+<div class='row'>
+	<h2>Heroes:</h2>
+	<div class='well col-md-6'>
+		<ul>
+			<% @game.heros.each do |h| %>
+				<li><%= h.name %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<h2>Villains:</h2>
+	<div class='well col-md-6'>
+		<ul>
+			<% @game.villains.each do |v| %>
+				<li><%= v.name %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<h2>Henchmen:</h2>
+	<div class='well col-md-6'>
+		<ul>
+			<% @game.henchmen.each do |h| %>
+				<li><%= h.name %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
+

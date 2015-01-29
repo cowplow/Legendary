@@ -1,4 +1,4 @@
-<%= render 'shared_content/title', title: "All Heroes" %>
+<%= render 'shared_content/title', title: "All Henchmen Groups" %>
 
 <% Expansion.all.each do |expansion| %>
   <h3><%= link_to expansion.name, expansion_path(expansion) %></h3>
@@ -6,8 +6,8 @@
   <div class='row'>
     <div class='well col-md-6'>
       <ul>
-    	 <% expansion.heros.each do |hero| %>
-          <li><%= link_to hero.name, hero_path(hero) %></li>
+    	 <% expansion.henchmen.each do |henchman| %>
+          <li><%= link_to henchman.name, henchman_path(henchman) %></li>
     	 <% end %>
       </ul>
     </div>

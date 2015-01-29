@@ -7,5 +7,11 @@ class Game < ActiveRecord::Base
   has_many :heros
   has_many :villains
   has_many :henchmen
+  has_many :game_expansions
+  has_many :expansions, through: :game_expansions
+
+  PLAYERS = [[1,1],[2,2],[3,3],[4,4],[5,5]]
+
+  validates :expansions, presence: true
 
 end
