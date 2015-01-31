@@ -35,6 +35,8 @@ class ExpansionsController < ApplicationController
   def show
   end
 
+  
+
   private
 
   def expansion_params
@@ -44,5 +46,7 @@ class ExpansionsController < ApplicationController
   def set_expansion
     @expansion = Expansion.find_by(slug: params[:id])
   end
+
+  
   
 end

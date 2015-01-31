@@ -1,40 +1,28 @@
 <%= render 'shared_content/title', title: "Random Game" %>
 
-<h2>Mastermind: <%= @game.mastermind.name %></h2>
+<%= render 'display_game', title: "Mastermind: ", obj: @game.masterminds %>
 
-<h2>Scheme: <%= @game.scenario.name %></h2>
+<%= render 'display_game', title: "Scheme: ", obj: @game.scenarios %>
 
-<div class='row'>
-	<h2>Heroes:</h2>
-	<div class='well col-md-6'>
-		<ul>
-			<% @game.heros.each do |h| %>
-				<li><%= h.name %></li>
-			<% end %>
-		</ul>
-	</div>
-</div>
+<%= render 'display_game', title: "Heroes: ", obj: @game.heros %>
+
+<%= render 'display_game', title: "Villains: ", obj: @game.villains %>
+
+<%= render 'display_game', title: "Henchmen: ", obj: @game.henchmen %>
 
 <div class='row'>
-	<h2>Villains:</h2>
-	<div class='well col-md-6'>
-		<ul>
-			<% @game.villains.each do |v| %>
-				<li><%= v.name %></li>
+	<h2>Did you beat this scenario?</h2>
+		<div class='col-md-2'>
+			<%= form_for @game do |f| %>
+				<%= f.hidden_field :win, value: true %>
+				<%= f.submit("Victory", class: 'btn btn-success') %>
 			<% end %>
-		</ul>
-	</div>
-</div>
-
-<div class='row'>
-	<h2>Henchmen:</h2>
-	<div class='well col-md-6'>
-		<ul>
-			<% @game.henchmen.each do |h| %>
-				<li><%= h.name %></li>
+		</div>
+		<div class='col-md-2'>
+			<%= form_for @game do |f| %>
+				<%= f.hidden_field :win, value: false %>
+				<%= f.submit("Defeat", class: 'btn btn-danger') %>
 			<% end %>
-		</ul>
-	</div>
+		</div>
 </div>
-
 

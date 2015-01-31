@@ -1,7 +1,7 @@
 <%= render 'shared_content/title', title: "All Heroes" %>
 
 <% Expansion.all.each do |expansion| %>
-  <h3><%= link_to expansion.name, expansion_path(expansion) %></h3>
+  <h3><%= link_to expansion.name, expansion_path(expansion) %> - Win Rate: <%= expansion.show_expansion_win_rate %>%</h3>
 
   <div class='row'>
     <div class='well col-md-6'>

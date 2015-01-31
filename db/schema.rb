@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128020255) do
+ActiveRecord::Schema.define(version: 20150131022111) do
 
   create_table "cards", force: true do |t|
     t.datetime "created_at"
@@ -32,6 +32,41 @@ ActiveRecord::Schema.define(version: 20150128020255) do
   create_table "game_expansions", force: true do |t|
     t.integer  "game_id"
     t.integer  "expansion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_henchmen", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "henchman_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_heros", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "hero_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_masterminds", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "mastermind_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_scenarios", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "scenario_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_villains", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "villain_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

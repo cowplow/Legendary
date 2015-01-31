@@ -1,5 +1,7 @@
 <%= render 'shared_content/title', title: @expansion.name %>
 
+<h3>Expansion Win Rate: <%= @expansion.show_expansion_win_rate %>% </h3>
+
 
 <h3><%= link_to "Heroes", heros_path %></h3>
 
@@ -7,7 +9,7 @@
   <div class='well col-md-6'>
     <ul>
   	 <% @expansion.heros.each do |hero| %>
-        <li><%= link_to hero.name, hero_path(hero) %></li>
+        <li><%= link_to hero.name, hero_path(hero) %> - Win Rate: <%= hero.show_hero_win_rate %>%</li>
   	 <% end %>
     </ul>
   </div>
@@ -21,7 +23,7 @@
   <div class='well col-md-6'>
     <ul>
      <% @expansion.masterminds.each do |mastermind| %>
-        <li><%= link_to mastermind.name, mastermind_path(mastermind) %></li>
+        <li><%= link_to mastermind.name, mastermind_path(mastermind) %> - Win Rate: <%= mastermind.show_mastermind_win_rate %>%</li>
      <% end %>
     </ul>
   </div>
@@ -33,7 +35,7 @@
   <div class='well col-md-6'>
     <ul>
      <% @expansion.scenarios.each do |scenario| %>
-        <li><%= link_to scenario.name, scenario_path(scenario) %></li>
+        <li><%= link_to scenario.name, scenario_path(scenario) %> - Win Rate: <%= scenario.show_scenario_win_rate %>%</li>
      <% end %>
     </ul>
   </div>
@@ -45,7 +47,7 @@
   <div class='well col-md-6'>
     <ul>
      <% @expansion.villains.each do |villain| %>
-        <li><%= link_to villain.name, villain_path(villain) %></li>
+        <li><%= link_to villain.name, villain_path(villain) %> - Win Rate: <%= villain.show_villain_win_rate %>%</li>
      <% end %>
     </ul>
   </div>
@@ -57,7 +59,7 @@
   <div class='well col-md-6'>
     <ul>
      <% @expansion.henchmen.each do |henchman| %>
-        <li><%= link_to henchman.name, henchman_path(henchman) %></li>
+        <li><%= link_to henchman.name, henchman_path(henchman) %> - Win Rate: <%= henchman.show_henchmen_win_rate %>%</li>
      <% end %>
     </ul>
   </div>

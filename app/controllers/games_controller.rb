@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_action :set_game, only: [:show, :update]
+
   def index
     @games = Game.all
   end
@@ -21,10 +23,23 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+  end
+
+  def update
+    if @game.update(game_params)
+      flash[:notice] = "Game recorded. Thanks for helping us collect stats."
+      redirect_to new_game_path
+    else
+      flash[:error] = "We weren't able to save the game data"
+      redirect_to new_game_path
+    end
   end
 
   private
+
+  def set_game
+    @game = Game.find(params[:id])
+  end
 
   def build_game
     set_players!
@@ -58,7 +73,7 @@ class GamesController < ApplicationController
       end
     end
 
-    @game.mastermind = masterminds.shuffle!.pop
+    @game.masterminds << masterminds.shuffle!.pop
   end
 
   def generate_scheme!
@@ -71,7 +86,7 @@ class GamesController < ApplicationController
       end
     end
 
-    @game.scenario = scenarios.shuffle!.pop
+    @game.scenarios << scenarios.shuffle!.pop
   end
 
   def generate_heroes!
@@ -149,6 +164,5 @@ class GamesController < ApplicationController
       @game.henchmen << henchmen.shuffle!.pop
     end
   end
-
 
 end
