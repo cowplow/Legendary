@@ -2,6 +2,8 @@
 
 <h4>Set: <%= link_to @mastermind.expansion.name, expansion_path(@mastermind.expansion) %></h4>
 
+<h4>Power: <%= @mastermind.power %></h4>
+
 <h4>Description: <%= @mastermind.description %></h4>
 
 <table class='table table-striped table-bordered'>
@@ -24,7 +26,7 @@
     <tr>
       <th scope="row">Overall</th>
       <td><%= @mastermind.total_games %></td>
-      <td><%= @mastermind.show_mastermind_win_rate %></td>
+      <td><%= @mastermind.show_mastermind_win_rate %>%</td>
     </tr>
   </tbody>
 </table>
