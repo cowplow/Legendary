@@ -2,6 +2,24 @@
 
 <%= render 'shared_content/error_messages', obj: @game %>
 
+<h4>How it works:</h4>
+
+<br/>
+
+<div class='row'>
+  <div class="well col-md-6">
+    <p>
+      Legendary is a deck building card game set in the Marvel Universe. While the game is a lot of fun to play, at times the setup for the game takes nearly as long the game itself.  This app allows you to pick the sets you own and how many players will be playing, and randomly generates the cards needed for a game.
+    </p>  
+
+    <p>Less setup = more game time!</p>
+    
+    <p>
+        In addition to generating the game you have the option of declaring a win or a loss based on the scenario we provided.  We use this information to track global stats for everyone's games, which in turn leads to the ability to determine the Strongest Heroes and Toughest Villains.
+    </p>
+  </div>
+</div>
+
 <%= form_for @game do |f| %>
   <h4>Please select the sets you own/wish to play with:</h4>
 

@@ -56,8 +56,10 @@
         </td>
         <% if x.win %>
           <td>Win</td>
-        <% else %>
+        <% elsif x.win == false %>
           <td>Loss</td>
+        <% else %>
+          <td>No Result</td>
         <% end %>
       </tr>
     <% end %>
