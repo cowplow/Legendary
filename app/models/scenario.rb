@@ -13,8 +13,34 @@ class Scenario < ActiveRecord::Base
   def show_scenario_win_rate
     wins = Game.includes('scenarios').where(win: true, scenarios: {name: self.name }).count
     losses = Game.includes('scenarios').where(win: false, scenarios: {name: self.name }).count
+    total_games = wins + losses
 
-    (wins / (wins + losses).to_f * 100).round(2)
+    if total_games == 0
+      total_games = 1
+    end
+
+    (wins / total_games.to_f * 100).round(2)
+  end
+
+  def show_scenario_win_rate_with_player(p)
+    wins = Game.includes('scenarios').where(win: true, scenarios: {name: self.name }, players: p).count
+    losses = Game.includes('scenarios').where(win: false, scenarios: {name: self.name }, players: p).count
+
+    total_games = wins + losses
+
+    if total_games == 0
+      total_games = 1
+    end
+
+    (wins / total_games.to_f * 100).round(2)
+  end
+
+  def total_games_with_player(p)
+    Game.includes('scenarios').where(scenarios: {name: self.name }, players: p).count
+  end
+
+  def total_games
+    Game.includes('scenarios').where(scenarios: {name: self.name }).count
   end
 
 end

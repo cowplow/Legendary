@@ -1,5 +1,7 @@
 class HenchmenController < ApplicationController
   before_action :set_henchman, only: [:show, :edit, :update]
+  before_action :require_user, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update]
 
   def new
     @henchman = Henchman.new
@@ -29,7 +31,7 @@ class HenchmenController < ApplicationController
   end
 
   def index
-    @henchmen = Henchman.all
+    @henchmen = Henchman.all.sort_by{|x| x.show_henchmen_win_rate}.reverse
   end
 
   def show
@@ -43,6 +45,13 @@ class HenchmenController < ApplicationController
 
   def set_henchman
     @henchman = Henchman.find_by(slug: params[:id])
+  end
+
+  def require_admin
+    if !logged_in? || !current_user.is_admin?
+      flash[:error] = "You do not have sufficient privileges to perform that action."
+      redirect_to root_path
+    end
   end
 
 end

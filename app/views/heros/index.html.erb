@@ -1,16 +1,23 @@
 <%= render 'shared_content/title', title: "All Heroes" %>
 
-<% Expansion.all.each do |expansion| %>
-  <h3><%= link_to expansion.name, expansion_path(expansion) %> - Win Rate: <%= expansion.show_expansion_win_rate %>%</h3>
-
-  <div class='row'>
-    <div class='well col-md-6'>
-      <ul>
-    	 <% expansion.heros.each do |hero| %>
-          <li><%= link_to hero.name, hero_path(hero) %></li>
-    	 <% end %>
-      </ul>
-    </div>
-  </div>
-
-<% end %>
+<table class='table table-striped table-bordered'>
+  <caption>All heroes ranked by their win rate</caption>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Hero</th>
+      <th>Player Win Rate</th>
+      <th>Expansion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% 0.upto(@heros.length-1) do |x| %>
+      <tr>
+        <th scope="row"><%= x+1 %></th>
+        <td><%= link_to @heros[x].name, hero_path(@heros[x]) %></td>
+        <td><%= @heros[x].show_hero_win_rate %>%</td>
+        <td><%= @heros[x].expansion.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

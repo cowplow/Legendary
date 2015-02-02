@@ -1,16 +1,23 @@
 <%= render 'shared_content/title', title: "All Masterminds" %>
 
-<% Expansion.all.each do |expansion| %>
-  <h3><%= link_to expansion.name, expansion_path(expansion) %></h3>
-
-  <div class='row'>
-    <div class='well col-md-6'>
-      <ul>
-    	 <% expansion.masterminds.each do |mastermind| %>
-          <li><%= link_to mastermind.name, mastermind_path(mastermind) %></li>
-    	 <% end %>
-      </ul>
-    </div>
-  </div>
-
-<% end %>
+<table class='table table-striped table-bordered'>
+  <caption>All Masterminds ranked from easiest to toughest</caption>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Mastermind</th>
+      <th>Player Win Rate</th>
+      <th>Expansion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% 0.upto(@masterminds.length-1) do |x| %>
+      <tr>
+        <th scope="row"><%= x+1 %></th>
+        <td><%= link_to @masterminds[x].name, mastermind_path(@masterminds[x]) %></td>
+        <td><%= @masterminds[x].show_mastermind_win_rate %>%</td>
+        <td><%= @masterminds[x].expansion.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

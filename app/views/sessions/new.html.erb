@@ -1,0 +1,18 @@
+<%= render 'shared_content/title', title: "Please Log In" %>
+
+<div class='well col-md-6'>
+	<%= form_tag '/login' do %>
+
+		<%= label_tag :username %>
+		<%= text_field_tag :username %>
+
+		<%= label_tag :password %>
+		<%= password_field_tag :password %>
+
+		<br/>
+		<br/>
+
+		<%= submit_tag 'Login', class: 'btn btn-info' %>
+
+	<% end %>
+</div>

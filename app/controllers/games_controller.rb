@@ -13,6 +13,11 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     
     if @game.valid?
+      if logged_in?
+        @game.creator = current_user
+      else
+        @game.creator = User.first
+      end
       @expansions = define_expansions
       build_game
       @game.save
@@ -161,6 +166,11 @@ class GamesController < ApplicationController
     end
 
     num_henchmen.times do
+      if henchmen.size == 0
+        Expansion.first.henchmen.each do |m|
+          henchmen << m
+        end
+      end
       @game.henchmen << henchmen.shuffle!.pop
     end
   end

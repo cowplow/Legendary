@@ -1,5 +1,7 @@
 class VillainsController < ApplicationController
   before_action :set_villain, only: [:show, :edit, :update]
+  before_action :require_user, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update]
 
   def new
     @villain = Villain.new
@@ -29,7 +31,7 @@ class VillainsController < ApplicationController
   end
 
   def index
-    @villains = Villain.all
+    @villains = Villain.all.sort_by{|x| x.show_villain_win_rate}.reverse
   end
 
   def show
@@ -43,6 +45,13 @@ class VillainsController < ApplicationController
 
   def set_villain
     @villain = Villain.find_by(slug: params[:id])
+  end
+
+  def require_admin
+    if !logged_in? || !current_user.is_admin?
+      flash[:error] = "You do not have sufficient privileges to perform that action."
+      redirect_to root_path
+    end
   end
 
 end

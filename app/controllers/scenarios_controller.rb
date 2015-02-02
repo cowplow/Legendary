@@ -1,5 +1,7 @@
 class ScenariosController < ApplicationController
   before_action :set_scenario, only: [:show, :edit, :update]
+  before_action :require_user, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update]
 
   def new
     @scenario = Scenario.new
@@ -29,7 +31,7 @@ class ScenariosController < ApplicationController
   end
 
   def index
-    @scenarios = Scenario.all
+    @scenarios = Scenario.all.sort_by{|x| x.show_scenario_win_rate}.reverse
   end
 
   def show
@@ -43,6 +45,13 @@ class ScenariosController < ApplicationController
 
   def set_scenario
     @scenario = Scenario.find_by(slug: params[:id])
+  end
+
+  def require_admin
+    if !logged_in? || !current_user.is_admin?
+      flash[:error] = "You do not have sufficient privileges to perform that action."
+      redirect_to root_path
+    end
   end
   
 end

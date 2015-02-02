@@ -1,0 +1,65 @@
+<%= render 'shared_content/title', title: "You are viewing #{@user.username}'s Profile" %>
+
+<table class='table table-striped table-bordered'>
+  <caption>Recent Games for <%= @user.username %></caption>
+  <thead>
+    <tr>
+    	<th>Game Id</th>
+      <th>Number of Players</th>
+      <th>Scheme</th>
+      <th>Mastermind</th>
+      <th>Heroes</th>
+      <th>Villains</th>
+      <th>Henchmen</th>
+      <th>Outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.games.reverse.each do |x| %>
+      <tr>
+        <th scope="row"><%= x.id %></th>
+        <td><%= x.players %></td>
+        <td>
+          <ul>
+            <% x.scenarios.each do |s| %>
+              <li><%= "#{s.name}" %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <% x.masterminds.each do |m| %>
+              <li><%= "#{m.name}" %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <% x.heros.each do |h| %>
+              <li><%= "#{h.name}" %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <% x.villains.each do |v| %>
+              <li><%= "#{v.name}" %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <% x.henchmen.each do |h| %>
+              <li><%= "#{h.name}" %></li>
+            <% end %>
+          </ul>
+        </td>
+        <% if x.win %>
+          <td>Win</td>
+        <% else %>
+          <td>Loss</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

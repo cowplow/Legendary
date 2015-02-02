@@ -1,5 +1,7 @@
 class ExpansionsController < ApplicationController
   before_action :set_expansion, only: [:show, :edit, :update]
+  before_action :require_user, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update]
 
   def new
     @expansion = Expansion.new
@@ -33,6 +35,11 @@ class ExpansionsController < ApplicationController
   end
 
   def show
+    @heroes = @expansion.heros.sort_by{|x| x.name}
+    @schemes = @expansion.scenarios.sort_by{|x| x.name}
+    @masterminds = @expansion.masterminds.sort_by{|x| x.name}
+    @henchmen = @expansion.henchmen.sort_by{|x| x.name}
+    @villains = @expansion.villains.sort_by{|x| x.name}
   end
 
   
@@ -47,6 +54,11 @@ class ExpansionsController < ApplicationController
     @expansion = Expansion.find_by(slug: params[:id])
   end
 
-  
+  def require_admin
+    if !logged_in? || !current_user.is_admin?
+      flash[:error] = "You do not have sufficient privileges to perform that action."
+      redirect_to root_path
+    end
+  end
   
 end

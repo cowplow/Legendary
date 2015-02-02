@@ -1,5 +1,7 @@
 class MastermindsController < ApplicationController
   before_action :set_mastermind, only: [:show, :edit, :update]
+  before_action :require_user, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update]
 
   def new
     @mastermind = Mastermind.new
@@ -29,7 +31,7 @@ class MastermindsController < ApplicationController
   end
 
   def index
-    @masterminds = Mastermind.all
+    @masterminds = Mastermind.all.sort_by{|x| x.show_mastermind_win_rate}.reverse
   end
 
   def show
@@ -43,6 +45,13 @@ class MastermindsController < ApplicationController
 
   def set_mastermind
     @mastermind = Mastermind.find_by(slug: params[:id])
+  end
+
+  def require_admin
+    if !logged_in? || !current_user.is_admin?
+      flash[:error] = "You do not have sufficient privileges to perform that action."
+      redirect_to root_path
+    end
   end
 
 end
